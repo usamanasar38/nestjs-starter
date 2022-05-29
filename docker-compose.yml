@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+#      - ${SERVER_PORT}:${SERVER_PORT}
+      - "3000:3000"
+    command: pnpm start:dev
+    env_file:
+      - .env
+    networks:
+      - starter_service
+
+networks:
+  starter_service:
+    driver: bridge
