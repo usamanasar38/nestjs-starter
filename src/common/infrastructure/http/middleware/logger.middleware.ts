@@ -8,28 +8,20 @@ export class LoggerMiddleware implements NestMiddleware {
     if (req.body.operationName !== 'IntrospectionQuery') {
       res.on('finish', () => {
         if (res.statusCode < 200 || res.statusCode > 299) {
-          this.logError(req, res);
+          this.logger.error(
+            `${req.method}  ${req.originalUrl} ${req.body.query ?? ''} ${
+              res.statusCode
+            }`,
+          );
         } else {
-          this.logSuccess(req, res);
+          this.logger.log(
+            `${req.method}  ${req.originalUrl} ${req.body.query ?? ''} ${
+              res.statusCode
+            }`,
+          );
         }
       });
     }
     next();
-  }
-
-  private logSuccess(req: Request, res: Response) {
-    this.logger.log(
-      `${req.method}  ${req.originalUrl} ${req.body.query ?? ''} ${
-        res.statusCode
-      }`,
-    );
-  }
-
-  private logError(req: Request, res: Response) {
-    this.logger.error(
-      `${req.method}  ${req.originalUrl} ${req.body.query ?? ''} ${
-        res.statusCode
-      }`,
-    );
   }
 }

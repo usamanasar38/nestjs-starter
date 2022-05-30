@@ -9,14 +9,20 @@ async function bootstrap() {
   app.setGlobalPrefix('api');
   app.useGlobalPipes(new ValidationPipe());
 
-  const config = new DocumentBuilder()
-    .setTitle('Starter Service')
-    .setDescription('Api documentation for starter service apis')
-    .setVersion('1.0')
-    .build();
-  const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api-docs', app, document);
-  await app.listen(process.env.PORT as unknown as string);
+  // Swagger
+  if (process.env.NODE_ENV !== 'production') {
+    const config = new DocumentBuilder()
+      .setTitle('Starter Service')
+      .setDescription('Api documentation for starter service apis')
+      .setVersion('1.0')
+      .addBearerAuth()
+      .build();
+
+    const document = SwaggerModule.createDocument(app, config);
+    SwaggerModule.setup('api/documentation', app, document);
+  }
+
+  await app.listen(process.env.PORT as string);
   logger.log(`Application is running on: ${await app.getUrl()}`);
 }
 
