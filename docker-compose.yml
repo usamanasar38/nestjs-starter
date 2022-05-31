@@ -11,14 +11,36 @@ services:
       - .:/usr/src/app
       - /usr/src/app/node_modules
     ports:
-#      - ${SERVER_PORT}:${SERVER_PORT}
-      - "3000:3000"
+     - ${SERVER_PORT}:${PORT}
     command: pnpm start:dev
     env_file:
       - .env
+    networks:
+      - starter_service
+    depends_on:
+       - db
+
+  db:
+    hostname: "mydbhost"
+    image: mysql
+    restart: always
+    container_name: MySQL
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: starter1234
+      MYSQL_DATABASE: starter2
+    ports:
+      - "3307:3306"
+    volumes:
+      - dbdata:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - starter_service
 
 networks:
   starter_service:
     driver: bridge
+
+volumes:
+    dbdata:
+      driver: local

@@ -1,5 +1,5 @@
 # ******** DEVELOPMENT ********
-FROM node:14 AS development
+FROM node:16 AS development
 
 RUN npm install --global pnpm
 
@@ -8,6 +8,9 @@ ENV NODE_ENV=development
 WORKDIR /usr/src/app
 
 COPY package.json pnpm-lock.yaml ./
+COPY prisma ./prisma
+
+RUN ls -al ./
 
 RUN pnpm install --frozen-lockfile --strict-peer-dependencies --reporter append-only --unsafe-perm
 
@@ -16,7 +19,7 @@ COPY . .
 RUN pnpm build
 
 # ******** PRODUCTION ********
-FROM node:14-alpine as production
+FROM node:16-alpine as production
 
 RUN npm install --global pnpm
 
@@ -27,6 +30,9 @@ ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
 COPY package.json pnpm-lock.yaml ./
+COPY prisma ./prisma
+
+RUN ls -al ./
 
 RUN pnpm install --prod --frozen-lockfile --strict-peer-dependencies --reporter append-only --unsafe-perm
 
@@ -38,4 +44,4 @@ COPY --chown=node:node --from=development /usr/src/app/dist ./dist
 
 USER node
 
-CMD ["dumb-init", "node", "dist/main"]
+CMD ["dumb-init", "node", "dist/src/main"]

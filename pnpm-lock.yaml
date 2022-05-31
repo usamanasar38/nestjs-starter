@@ -9,6 +9,7 @@ specifiers:
   '@nestjs/schematics': ^8.0.0
   '@nestjs/swagger': ^5.2.1
   '@nestjs/testing': ^8.0.0
+  '@prisma/client': ^3.14.0
   '@types/express': ^4.17.13
   '@types/jest': 27.5.0
   '@types/node': ^16.0.0
@@ -25,6 +26,7 @@ specifiers:
   jest: 28.0.3
   lint-staged: ^12.4.2
   prettier: ^2.3.2
+  prisma: ^3.14.0
   reflect-metadata: ^0.1.13
   rimraf: ^3.0.2
   rxjs: ^7.2.0
@@ -43,6 +45,7 @@ dependencies:
   '@nestjs/core': 8.4.5_9530c9e4e8c33b27551732908d05d2fb
   '@nestjs/platform-express': 8.4.5_c0c9651cd01c4e2d3bda397a5c438062
   '@nestjs/swagger': 5.2.1_a20b0b6e05d4a5524b92cb8d08f6e0e2
+  '@prisma/client': 3.14.0_prisma@3.14.0
   class-transformer: 0.5.1
   class-validator: 0.13.2
   reflect-metadata: 0.1.13
@@ -68,6 +71,7 @@ devDependencies:
   jest: 28.0.3_d09b7dc3c72b5f7fb638affb7bfc0799
   lint-staged: 12.4.2
   prettier: 2.6.2
+  prisma: 3.14.0
   source-map-support: 0.5.21
   supertest: 6.2.3
   ts-jest: 28.0.1_a25675aa19495b326a4f1a7bf9bc2239
@@ -1048,6 +1052,29 @@ packages:
     transitivePeerDependencies:
       - encoding
     dev: false
+
+  /@prisma/client/3.14.0_prisma@3.14.0:
+    resolution: {integrity: sha512-atb41UpgTR1MCst0VIbiHTMw8lmXnwUvE1KyUCAkq08+wJyjRE78Due+nSf+7uwqQn+fBFYVmoojtinhlLOSaA==}
+    engines: {node: '>=12.6'}
+    requiresBuild: true
+    peerDependencies:
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+    dependencies:
+      '@prisma/engines-version': 3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a
+      prisma: 3.14.0
+    dev: false
+
+  /@prisma/engines-version/3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a:
+    resolution: {integrity: sha512-D+yHzq4a2r2Rrd0ZOW/mTZbgDIkUkD8ofKgusEI1xPiZz60Daks+UM7Me2ty5FzH3p/TgyhBpRrfIHx+ha20RQ==}
+    dev: false
+
+  /@prisma/engines/3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a:
+    resolution: {integrity: sha512-LwZvI3FY6f43xFjQNRuE10JM5R8vJzFTSmbV9X0Wuhv9kscLkjRlZt0BEoiHmO+2HA3B3xxbMfB5du7ZoSFXGg==}
+    requiresBuild: true
+    dev: true
 
   /@sinclair/typebox/0.23.5:
     resolution: {integrity: sha512-AFBVi/iT4g20DHoujvMH1aEDn8fGJh4xsRGCP6d8RpLPMqsNPvW01Jcn0QysXTsg++/xj25NmJsGyH9xug/wKg==}
@@ -4221,6 +4248,15 @@ packages:
       ansi-regex: 5.0.1
       ansi-styles: 5.2.0
       react-is: 18.1.0
+    dev: true
+
+  /prisma/3.14.0:
+    resolution: {integrity: sha512-l9MOgNCn/paDE+i1K2fp9NZ+Du4trzPTJsGkaQHVBufTGqzoYHuNk8JfzXuIn0Gte6/ZjyKj652Jq/Lc1tp2yw==}
+    engines: {node: '>=12.6'}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@prisma/engines': 3.14.0-36.2b0c12756921c891fec4f68d9444e18c7d5d4a6a
     dev: true
 
   /process-nextick-args/2.0.1:
