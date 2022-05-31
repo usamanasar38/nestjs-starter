@@ -13,7 +13,7 @@ generator client {
 }
 
 model Account {
-  id                  BigInt        @id @default(autoincrement())
+  id                  Int        @id @default(autoincrement())
   name                String
   password            String
   balance             Int           @default(0)

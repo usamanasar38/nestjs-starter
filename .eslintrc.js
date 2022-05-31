@@ -7,7 +7,6 @@ module.exports = {
   },
   plugins: ['@typescript-eslint/eslint-plugin'],
   extends: [
-    'plugin:jest/recommended',
     'plugin:prettier/recommended',
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
@@ -35,6 +34,12 @@ module.exports = {
     '@typescript-eslint/prefer-optional-chain': 'warn',
     'no-console': ['error'],
     eqeqeq: 'error',
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      {
+        checksVoidReturn: false,
+      },
+    ],
     '@typescript-eslint/no-unused-vars': [
       'error',
       { ignoreRestSiblings: true },
@@ -53,12 +58,6 @@ module.exports = {
           'error',
           { max: 200, skipBlankLines: true, skipComments: true },
         ],
-      },
-    },
-    {
-      files: ['*.e2e-spec.ts'],
-      rules: {
-        'jest/expect-expect': 'off',
       },
     },
   ],

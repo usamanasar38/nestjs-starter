@@ -7,7 +7,11 @@ const logger = new ConsoleLogger('main');
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.setGlobalPrefix('api');
-  app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
 
   // Swagger
   if (process.env.NODE_ENV !== 'production') {

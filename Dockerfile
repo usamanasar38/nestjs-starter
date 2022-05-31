@@ -16,7 +16,7 @@ RUN pnpm install --frozen-lockfile --strict-peer-dependencies --reporter append-
 
 COPY . .
 
-RUN pnpm build
+RUN pnpm start:dev
 
 # ******** PRODUCTION ********
 FROM node:16-alpine as production

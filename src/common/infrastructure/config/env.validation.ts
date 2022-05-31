@@ -1,6 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
-import { IsEnum, IsNumber, IsString, validateSync } from 'class-validator';
+import { IsEnum, IsInt, IsString, validateSync } from 'class-validator';
 
 enum Environment {
   Development = 'development',
@@ -13,7 +13,7 @@ class EnvironmentVariables {
   @IsEnum(Environment)
   NODE_ENV: Environment;
 
-  @IsNumber()
+  @IsInt()
   PORT: number;
 
   @IsString()
