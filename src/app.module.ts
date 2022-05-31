@@ -5,9 +5,13 @@ import { AppService } from './app.service';
 import { HealthCheckController } from './common/application/controllers/health-check.controller';
 import configuration from './common/infrastructure/config/configuration';
 import { validate } from './common/infrastructure/config/env.validation';
+import { AccountsModule } from '@account/accounts.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ load: [configuration], validate })],
+  imports: [
+    ConfigModule.forRoot({ load: [configuration], validate }),
+    AccountsModule,
+  ],
   controllers: [HealthCheckController],
   providers: [AppService],
 })

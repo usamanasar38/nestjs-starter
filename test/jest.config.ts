@@ -19,6 +19,7 @@ module.exports = {
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
   moduleNameMapper: {
-    '^@/(.*)$': resolve(__dirname, '../src/$1'),
+    '^@common/(.*)$': resolve(__dirname, '../src/common/$1'),
+    '^@account/(.*)$': resolve(__dirname, '../src/account/$1'),
   },
 };
