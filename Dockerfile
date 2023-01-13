@@ -1,5 +1,5 @@
 # ******** DEVELOPMENT ********
-FROM node:14 AS development
+FROM node:18 AS development
 
 RUN npm install --global pnpm
 
@@ -16,7 +16,7 @@ COPY . .
 RUN pnpm build
 
 # ******** PRODUCTION ********
-FROM node:14-alpine as production
+FROM node:18-alpine as production
 
 RUN npm install --global pnpm
 

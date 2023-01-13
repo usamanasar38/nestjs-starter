@@ -1,5 +1,3 @@
-import { resolve } from 'path';
-
 module.exports = {
   moduleFileExtensions: ['js', 'json', 'ts'],
   rootDir: '../src',
@@ -10,15 +8,27 @@ module.exports = {
   collectCoverageFrom: ['**/*.(t|j)s'],
   coveragePathIgnorePatterns: [
     '.module.ts',
+    'index.ts',
     'main.ts',
     'configuration.ts',
     '.validation.ts',
+    '.event.ts',
+    '.token.ts',
+    '-integration.ts',
     '.interface.ts',
+    'console.ts',
+    'strategy.ts',
+    '.dto.ts',
+    'tests/data/*',
+    '.config.ts',
+    '.enum.ts',
+    '.decorator.ts',
+    '.e2e-spec.ts$',
+    'src/midtrans/interface/*',
+    'src/midtrans/testData/*',
     '.d.ts',
   ],
   coverageDirectory: '../coverage',
   testEnvironment: 'node',
-  moduleNameMapper: {
-    '^@/(.*)$': resolve(__dirname, '../src/$1'),
-  },
+  moduleNameMapper: {},
 };

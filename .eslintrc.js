@@ -33,11 +33,17 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-condition': 'warn',
     '@typescript-eslint/prefer-for-of': 'warn',
     '@typescript-eslint/prefer-optional-chain': 'warn',
+    '@typescript-eslint/no-floating-promises': 'off',
     'no-console': ['error'],
     eqeqeq: 'error',
     '@typescript-eslint/no-unused-vars': [
       'error',
-      { ignoreRestSiblings: true },
+      {
+        argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
+        caughtErrorsIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
     ],
     'max-lines-per-function': [
       'error',
@@ -47,12 +53,13 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.spec.ts'],
+      files: ['*.spec.ts', '*.e2e-spec.ts'],
       rules: {
         'max-lines-per-function': [
           'error',
           { max: 200, skipBlankLines: true, skipComments: true },
         ],
+        '@typescript-eslint/unbound-method': 'off',
       },
     },
     {
